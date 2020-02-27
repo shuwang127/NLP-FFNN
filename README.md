@@ -1,4 +1,5 @@
-### Feed Forward Neural Network for Sentiment Classification and Language Modeling
+## Feed Forward Neural Network (FFNN)
+## for Sentiment Classification and Language Modeling
 
 ------
 ### Sentiment Classification
