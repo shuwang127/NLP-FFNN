@@ -1,7 +1,6 @@
-## Feed Forward Neural Network (FFNN)
-## for Sentiment Classification and Language Modeling
+## Feed Forward Neural Network (FFNN)\\
+for Sentiment Classification and Language Modeling
 
-------
 ### Sentiment Classification
 
 Build and train a feed forward neural network (FFNN) with 2 layers with hidden vector size 20.
