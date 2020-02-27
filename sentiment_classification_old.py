@@ -18,7 +18,6 @@ from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
 from itertools import chain
-from sklearn.model_selection import train_test_split
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -324,13 +323,12 @@ def TrainFFNN(featTrain):
             nn.init.uniform_(m.bias)
     # calculate the train accuracy.
     def trainAccuracy(y, yhat):
-        total = len(y)
         cnt = 0
-        for i in range(total):
+        for i in range(D):
             err = y[i] - yhat[i]
             if abs(err) < 0.5:
                 cnt += 1
-        return cnt / total
+        return cnt / D
 
     # get V and D.
     V = len(featTrain[0])
@@ -344,12 +342,10 @@ def TrainFFNN(featTrain):
     random.shuffle(index)
     featTrain = featTrain[index]
     labelTrain = labelTrain[index]
-    # split the train and valid set.
-    xTrain, xValid, yTrain, yValid = train_test_split(featTrain, labelTrain, test_size=0.2)
     # convert data (x,y) into tensor.
-    x = torch.Tensor(xTrain).cuda()
-    y = torch.Tensor(yTrain).cuda()
-    y = y.reshape(len(yTrain), 1)
+    x = torch.Tensor(featTrain).cuda()
+    y = torch.Tensor(labelTrain).cuda()
+    y = y.reshape(D, 1)
 
     # build the model of feed forward neural network.
     model = FeedForwardNeuralNetwork(V)
@@ -361,26 +357,16 @@ def TrainFFNN(featTrain):
     loss = nn.MSELoss()
 
     # training phase.
-    accvbest = 0
-    for epoch in range(1000000):   # training loop
+    for epoch in range(700000):   # training loop
         model.zero_grad()       # zero all the Gradients
         yhat = model.forward(x) # compute forward pass
         output = loss(y, yhat)  # compute loss
         output.backward()       # back propagate loss
         optimizer.step()        # update weights
         # print statistics
-        if 0 == (epoch + 1) % 50000:  # print every 10000 mini-batches
+        if 0 == (epoch + 1) % 100000:  # print every 10000 mini-batches
             acc = trainAccuracy(y, yhat) * 100
-            xv = torch.Tensor(xValid).cuda()
-            yvhat = model.forward(xv)
-            accv = trainAccuracy(yValid, yvhat) * 100
-            print('[%06d] loss: %.3f, train acc: %.3f%%, valid acc: %.3f%%' % (epoch + 1, output.item(), acc, accv))
-            if accv >= accvbest:
-                accvbest = accv
-                torch.save(model, 'tmp/model.pth')
-            else:
-                model = torch.load('tmp/model.pth')
-                return model
+            print('[%06d] loss: %.3f, train acc: %.3f%%' % (epoch + 1, output.item(), acc))
     return model
 
 # test the feed forward neural network.
