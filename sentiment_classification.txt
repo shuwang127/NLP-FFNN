@@ -39,3 +39,30 @@ confusion matrix :      (actual)
 (predicted) Neg     2814(TN)    362 (FN)
             Pos     186 (FP)    820 (TP)
 -------------------------------------------
+
+
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
+6636
+[050000] loss: 0.168, train acc: 77.542%, valid acc: 75.986%
+[100000] loss: 0.097, train acc: 89.025%, valid acc: 82.915%
+[150000] loss: 0.064, train acc: 93.062%, valid acc: 84.946%
+[200000] loss: 0.055, train acc: 94.109%, valid acc: 84.946%
+[250000] loss: 0.050, train acc: 94.647%, valid acc: 85.185%
+[300000] loss: 0.046, train acc: 95.126%, valid acc: 85.185%
+[350000] loss: 0.045, train acc: 95.245%, valid acc: 85.424%
+[400000] loss: 0.043, train acc: 95.425%, valid acc: 85.902%
+[450000] loss: 0.042, train acc: 95.574%, valid acc: 85.902%
+[500000] loss: 0.040, train acc: 95.694%, valid acc: 86.022%
+[550000] loss: 0.040, train acc: 95.783%, valid acc: 85.902%
+-------------------------------------------
+Feed Forward Neural Network | noStem
+test accuracy : 87.06%
+confusion matrix :      (actual)
+                    Neg         Pos
+(predicted) Neg     2801(TN)    342 (FN)
+            Pos     199 (FP)    840 (TP)
+-------------------------------------------
