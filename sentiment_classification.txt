@@ -22,59 +22,6 @@ confusion matrix :      (actual)
 (predicted) Neg     2817(TN)    339 (FN)
             Pos     183 (FP)    843 (TP)
 -------------------------------------------
-[050000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
-[100000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
-[150000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
-[200000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
-[250000] loss: 0.114, train acc: 86.094%, valid acc: 82.915%
-[300000] loss: 0.066, train acc: 92.883%, valid acc: 85.424%
-[350000] loss: 0.054, train acc: 94.169%, valid acc: 86.858%
-[400000] loss: 0.048, train acc: 94.856%, valid acc: 87.097%
-[450000] loss: 0.042, train acc: 95.574%, valid acc: 87.575%
-[500000] loss: 0.040, train acc: 95.783%, valid acc: 87.336%
--------------------------------------------
-Feed Forward Neural Network | noStem
-test accuracy : 87.78%
-confusion matrix :      (actual)
-                    Neg         Pos
-(predicted) Neg     2802(TN)    313 (FN)
-            Pos     198 (FP)    869 (TP)
--------------------------------------------
-
-
-[nltk_data] Downloading package stopwords to /root/nltk_data...
-[nltk_data]   Unzipping corpora/stopwords.zip.
-[nltk_data] Downloading package punkt to /root/nltk_data...
-[nltk_data]   Unzipping tokenizers/punkt.zip.
--- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
-6636
-[050000] loss: 0.716, train acc: 28.409%, valid acc: 27.599%
-/usr/local/lib/python3.6/dist-packages/torch/serialization.py:360: UserWarning: Couldn't retrieve source code for container of type FeedForwardNeuralNetwork. It won't be checked for correctness upon loading.
-  "type " + obj.__name__ + ". It won't be checked "
-[100000] loss: 0.144, train acc: 81.699%, valid acc: 79.689%
-[150000] loss: 0.089, train acc: 90.072%, valid acc: 83.990%
-[200000] loss: 0.070, train acc: 92.315%, valid acc: 85.066%
-[250000] loss: 0.060, train acc: 93.571%, valid acc: 85.902%
-[300000] loss: 0.055, train acc: 94.079%, valid acc: 86.380%
-[350000] loss: 0.052, train acc: 94.378%, valid acc: 86.380%
-[400000] loss: 0.049, train acc: 94.767%, valid acc: 87.097%
-[450000] loss: 0.047, train acc: 95.006%, valid acc: 87.216%
-[500000] loss: 0.045, train acc: 95.245%, valid acc: 87.097%
--------------------------------------------
-Feed Forward Neural Network | noStem
-test accuracy : 85.94%
-confusion matrix :      (actual)
-                    Neg         Pos
-(predicted) Neg     2783(TN)    371 (FN)
-            Pos     217 (FP)    811 (TP)
--------------------------------------------
-
-[nltk_data] Downloading package stopwords to /root/nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt to /root/nltk_data...
-[nltk_data]   Package punkt is already up-to-date!
--- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
-6636
 [050000] loss: 0.721, train acc: 27.931%, valid acc: 29.510%
 [100000] loss: 0.159, train acc: 79.276%, valid acc: 76.464%
 [150000] loss: 0.097, train acc: 88.935%, valid acc: 80.765%
