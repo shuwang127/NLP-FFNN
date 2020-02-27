@@ -75,16 +75,16 @@ def DemoFFNN(lStem = 'noStem'):
 
     # extract training features with 'lStem' dataset.
     featTrain = ExtractFeatures('Train', lStem)
-    #np.save('tmp/featTrain.npy', featTrain)
-    #featTrain = np.load('tmp/featTrain.npy')
+    # np.save('tmp/featTrain.npy', featTrain)
+    # featTrain = np.load('tmp/featTrain.npy')
 
     # get the model parameters.
     model = TrainFFNN(featTrain)
 
     # extract testing features with 'lStem' dataset.
     featTest = ExtractFeatures('Test', lStem)
-    #np.save('tmp/featTest.npy', featTest)
-    #featTest = np.load('tmp/featTest.npy')
+    # np.save('tmp/featTest.npy', featTest)
+    # featTest = np.load('tmp/featTest.npy')
 
     # get testing predictions using model parameters.
     accuracy, confusion = TestFFNN(model, featTest)
