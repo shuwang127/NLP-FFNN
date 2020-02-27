@@ -1,0 +1,42 @@
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
+Load TrainSet: 1181/3000 positive/negative samples.
+Vocabulary: 6636 items.
+Vocabulary (stem): 5090 items.
+Load TestSet: 1182/3000 positive/negative samples.
+[050000] loss: 0.172, train acc: 76.764%, valid acc: 74.313%
+[100000] loss: 0.096, train acc: 89.145%, valid acc: 83.513%
+[150000] loss: 0.068, train acc: 92.584%, valid acc: 85.663%
+[200000] loss: 0.058, train acc: 93.810%, valid acc: 85.902%
+[250000] loss: 0.050, train acc: 94.647%, valid acc: 86.499%
+[300000] loss: 0.043, train acc: 95.395%, valid acc: 86.977%
+[350000] loss: 0.040, train acc: 95.724%, valid acc: 86.858%
+-------------------------------------------
+Feed Forward Neural Network | Stem
+test accuracy : 87.52%
+confusion matrix :      (actual)
+                    Neg         Pos
+(predicted) Neg     2817(TN)    339 (FN)
+            Pos     183 (FP)    843 (TP)
+-------------------------------------------
+[050000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
+[100000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
+[150000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
+[200000] loss: 0.714, train acc: 28.618%, valid acc: 26.762%
+[250000] loss: 0.114, train acc: 86.094%, valid acc: 82.915%
+[300000] loss: 0.066, train acc: 92.883%, valid acc: 85.424%
+[350000] loss: 0.054, train acc: 94.169%, valid acc: 86.858%
+[400000] loss: 0.048, train acc: 94.856%, valid acc: 87.097%
+[450000] loss: 0.042, train acc: 95.574%, valid acc: 87.575%
+[500000] loss: 0.040, train acc: 95.783%, valid acc: 87.336%
+-------------------------------------------
+Feed Forward Neural Network | noStem
+test accuracy : 87.78%
+confusion matrix :      (actual)
+                    Neg         Pos
+(predicted) Neg     2802(TN)    313 (FN)
+            Pos     198 (FP)    869 (TP)
+-------------------------------------------

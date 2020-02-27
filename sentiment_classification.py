@@ -356,7 +356,7 @@ def TrainFFNN(featTrain):
     model.apply(weight_init)
     model.to('cuda')
     # optimizing with stochastic gradient descent.
-    optimizer = optim.SGD(model.parameters(), lr = 0.01)
+    optimizer = optim.SGD(model.parameters(), lr = 0.05)
     # seting loss function as mean squared error.
     loss = nn.MSELoss()
 
@@ -431,7 +431,7 @@ def OutputFFNN(accuracy, confusion, lStem):
     # output on screen and to file.
     print('-------------------------------------------')
     print('Feed Forward Neural Network | ' + lStem )
-    print('accuracy : %.2f%%' % (accuracy * 100))
+    print('test accuracy : %.2f%%' % (accuracy * 100))
     print('confusion matrix :      (actual)')
     print('                    Neg         Pos')
     print('(predicted) Neg     %-4d(TN)    %-4d(FN)' % (confusion[0][0], confusion[0][1]))
