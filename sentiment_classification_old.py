@@ -1,9 +1,18 @@
 '''
   Author: Julia Jeng, Shu Wang, Arman Anwar
-  Description: AIT 726 Homework 2
-  Usage: Put file 'sentiment_classification.py' and folder 'twitter' in the same folder.
+  Brief: AIT 726 Homework 2
+  Usage:
+      Put file 'sentiment_classification.py' and folder 'twitter' in the same folder.
   Command to run:
       python sentiment_classification.py
+  Description:
+      Build and train a feed forward neural network (FFNN) with 2 layers with hidden vector size 20.
+      Initalized weights: random weights.
+      Loss function: mean squared error.
+      Activation function: sigmoid.
+      Learning rate: 0.01.
+      Iteration: 1000000
+      Emoticon tokenizer: TweetTokenizer
 '''
 
 import os
@@ -224,7 +233,7 @@ def CreateVocabulary():
     np.savez('tmp/Test.npz', labelTest = labelTest, dataTest = dataTest, dataTestStem = dataTestStem)
     return
 
-# extract features for a 'dataset' with or without 'stem' using 'method'
+# extract tfidf features for a 'dataset' with or without 'stem'
 def ExtractFeatures(dataset = 'Train', lStem = 'noStem'):
     '''
     extract features for a 'dataset' with or without 'stem'
@@ -316,6 +325,11 @@ class FeedForwardNeuralNetwork(nn.Module):
 
 # train the feed forward neural network
 def TrainFFNN(featTrain):
+    '''
+    train a feed forward neural network using train features.
+    :param featTrain: train features - D * V
+    :return: model - a FeedForwardNeuralNetwork object
+    '''
     # initialize network weights.
     def weight_init(m):
         if isinstance(m, nn.Linear):
@@ -357,7 +371,7 @@ def TrainFFNN(featTrain):
     loss = nn.MSELoss()
 
     # training phase.
-    for epoch in range(700000):   # training loop
+    for epoch in range(1000000):   # training loop
         model.zero_grad()       # zero all the Gradients
         yhat = model.forward(x) # compute forward pass
         output = loss(y, yhat)  # compute loss
@@ -371,6 +385,13 @@ def TrainFFNN(featTrain):
 
 # test the feed forward neural network.
 def TestFFNN(model, featTest):
+    '''
+    run test data using the feed forward neural network
+    :param model: a FeedForwordNeuralNetwork object.
+    :param featTest:  test features - D' * V
+    :return: accuracy - 0~1
+    :return: confusion - confusion matrix 2 * 2
+    '''
     # get predictions for testing samples with model parameters.
     def GetPredictions(model, featTest):
         D = len(featTest)
@@ -410,6 +431,13 @@ def TestFFNN(model, featTest):
 
 # output the results.
 def OutputFFNN(accuracy, confusion, lStem):
+    '''
+    output the results.
+    :param accuracy: test accuracy 0~1
+    :param confusion: confusion matrix 2 * 2
+    :param lStem: stem setting - 'noStem', 'Stem'
+    :return: none
+    '''
     # input validation.
     if lStem not in ['noStem', 'Stem']:
         print('Error: stem setting invalid!')
