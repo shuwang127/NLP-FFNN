@@ -1,1 +1,9 @@
-
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
+Load TrainSet: 1181/3000 positive/negative samples.
+Vocabulary: 6636 items.
+Vocabulary (stem): 5090 items.
+Load TestSet: 1182/3000 positive/negative samples.
