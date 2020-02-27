@@ -7,3 +7,21 @@ Load TrainSet: 1181/3000 positive/negative samples.
 Vocabulary: 6636 items.
 Vocabulary (stem): 5090 items.
 Load TestSet: 1182/3000 positive/negative samples.
+[100000] loss: 0.717, train acc: 28.247%
+[200000] loss: 0.166, train acc: 77.972%
+[300000] loss: 0.118, train acc: 85.697%
+[400000] loss: 0.090, train acc: 89.955%
+[500000] loss: 0.077, train acc: 91.605%
+[600000] loss: 0.068, train acc: 92.657%
+[700000] loss: 0.059, train acc: 93.781%
+[800000] loss: 0.055, train acc: 94.116%
+[900000] loss: 0.053, train acc: 94.403%
+[1000000] loss: 0.051, train acc: 94.642%
+-------------------------------------------
+Feed Forward Neural Network | Stem
+accuracy : 87.71%
+confusion matrix :      (actual)
+                    Neg         Pos
+(predicted) Neg     2836(TN)    350 (FN)
+            Pos     164 (FP)    832 (TP)
+-------------------------------------------
