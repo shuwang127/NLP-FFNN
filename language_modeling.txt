@@ -65,3 +65,37 @@ N-gram test data: positive 13327, negative 29238.
 -------------------------------------------
 Test accuracy：86.061%
 -------------------------------------------
+-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
+Successfully load data from './tmp/'.
+Successfully load n-grams from './tmp/'.
+N-gram train data: positive 16486, negative 32972.
+[Epoch 010] loss: 0.205, train acc: 70.432%, valid acc: 70.441%
+[Epoch 020] loss: 0.194, train acc: 72.398%, valid acc: 72.089%
+[Epoch 030] loss: 0.185, train acc: 74.397%, valid acc: 73.706%
+[Epoch 040] loss: 0.176, train acc: 76.116%, valid acc: 75.536%
+[Epoch 050] loss: 0.169, train acc: 77.392%, valid acc: 76.577%
+[Epoch 060] loss: 0.163, train acc: 78.363%, valid acc: 77.355%
+[Epoch 070] loss: 0.157, train acc: 79.151%, valid acc: 78.164%
+[Epoch 080] loss: 0.151, train acc: 80.091%, valid acc: 78.973%
+[Epoch 090] loss: 0.146, train acc: 80.888%, valid acc: 79.559%
+[Epoch 100] loss: 0.142, train acc: 81.679%, valid acc: 80.085%
+[Epoch 110] loss: 0.138, train acc: 82.326%, valid acc: 80.600%
+[Epoch 120] loss: 0.135, train acc: 82.849%, valid acc: 80.914%
+[Epoch 130] loss: 0.131, train acc: 83.266%, valid acc: 81.005%
+[Epoch 140] loss: 0.129, train acc: 83.630%, valid acc: 81.389%
+[Epoch 150] loss: 0.126, train acc: 83.979%, valid acc: 81.622%
+[Epoch 160] loss: 0.124, train acc: 84.343%, valid acc: 81.894%
+[Epoch 170] loss: 0.122, train acc: 84.727%, valid acc: 82.117%
+[Epoch 180] loss: 0.120, train acc: 85.015%, valid acc: 82.420%
+[Epoch 190] loss: 0.118, train acc: 85.326%, valid acc: 82.511%
+[Epoch 200] loss: 0.116, train acc: 85.649%, valid acc: 82.703%
+[Epoch 210] loss: 0.114, train acc: 85.932%, valid acc: 82.734%
+[Epoch 220] loss: 0.112, train acc: 86.175%, valid acc: 82.905%
+[Epoch 230] loss: 0.110, train acc: 86.418%, valid acc: 82.986%
+[Epoch 240] loss: 0.109, train acc: 86.584%, valid acc: 83.067%
+[Epoch 250] loss: 0.107, train acc: 86.777%, valid acc: 83.249%
+Successfully load n-grams from './tmp/'.
+N-gram test data: positive 13327, negative 29238.
+-------------------------------------------
+Test accuracy：86.139%
+-------------------------------------------
