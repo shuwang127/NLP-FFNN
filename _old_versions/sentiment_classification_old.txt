@@ -1,0 +1,45 @@
+[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to /root/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
+Load TrainSet: 1181/3000 positive/negative samples.
+Vocabulary: 6636 items.
+Vocabulary (stem): 5090 items.
+Load TestSet: 1182/3000 positive/negative samples.
+[100000] loss: 0.717, train acc: 28.247%
+[200000] loss: 0.166, train acc: 77.972%
+[300000] loss: 0.118, train acc: 85.697%
+[400000] loss: 0.090, train acc: 89.955%
+[500000] loss: 0.077, train acc: 91.605%
+[600000] loss: 0.068, train acc: 92.657%
+[700000] loss: 0.059, train acc: 93.781%
+[800000] loss: 0.055, train acc: 94.116%
+[900000] loss: 0.053, train acc: 94.403%
+[1000000] loss: 0.051, train acc: 94.642%
+-------------------------------------------
+Feed Forward Neural Network | Stem
+accuracy : 87.71%
+confusion matrix :      (actual)
+                    Neg         Pos
+(predicted) Neg     2836(TN)    350 (FN)
+            Pos     164 (FP)    832 (TP)
+-------------------------------------------
+[100000] loss: 0.200, train acc: 71.753%
+[200000] loss: 0.175, train acc: 76.585%
+[300000] loss: 0.144, train acc: 81.870%
+[400000] loss: 0.117, train acc: 86.199%
+[500000] loss: 0.095, train acc: 89.213%
+[600000] loss: 0.078, train acc: 91.414%
+[700000] loss: 0.067, train acc: 92.753%
+[800000] loss: 0.062, train acc: 93.303%
+[900000] loss: 0.059, train acc: 93.710%
+[1000000] loss: 0.057, train acc: 93.853%
+-------------------------------------------
+Feed Forward Neural Network | noStem
+accuracy : 86.35%
+confusion matrix :      (actual)
+                    Neg         Pos
+(predicted) Neg     2786(TN)    357 (FN)
+            Pos     214 (FP)    825 (TP)
+-------------------------------------------
