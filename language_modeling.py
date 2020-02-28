@@ -361,7 +361,7 @@ def TestFFNN(model, gramTest, labelTest):
     numCorrect = torch.sum(torch.eq(preds, label).long()).item()
     accTest = 100 * numCorrect / numTest
     print('-------------------------------------------')
-    print('Test accuracy：%.3f%%' % (accTest))
+    print('Test accuracy: %.3f%%' % (accTest))
     print('-------------------------------------------')
     return accTest
 
