@@ -30,5 +30,5 @@ N-gram data: positive 16486, negative 32972.
 [Epoch 250] loss: 0.108, train acc: 86.670%, valid acc: 84.361%
 N-gram data: positive 16124, negative 32248.
 -------------------------------------------
-Test accuracy£º86.238%
+Test accuracy: 86.238%
 -------------------------------------------
