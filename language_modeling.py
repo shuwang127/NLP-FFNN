@@ -187,6 +187,12 @@ def CreateVocabulary():
 
 # extract gram and label for data using vocab
 def ExtractNGram(data, vocab):
+    '''
+    Extract 2-grams for dataset
+    :param data: data set D * (tokens)
+    :param vocab: vocabulary 1 * V
+    :return: gramData gramLabel in numpy.array
+    '''
     # generate ngram list and label.
     ngramList = []
     ngramLabel = []
@@ -247,6 +253,13 @@ class LanguageModeling(nn.Module):
 
 # train the feed forward neural network.
 def TrainFFNN(gramTrain, labelTrain, vocab):
+    '''
+    train the FFNN with gramTrain, labelTrain and vocab
+    :param gramTrain: data set N * 2
+    :param labelTrain: label N * 1
+    :param vocab: 1 * V
+    :return:
+    '''
     # initialize network weights with uniform distribution.
     def weight_init(m):
         if isinstance(m, nn.Linear):
@@ -343,6 +356,13 @@ def TrainFFNN(gramTrain, labelTrain, vocab):
 
 # test the feed forward neural network.
 def TestFFNN(model, gramTest, labelTest):
+    '''
+    test the gramTest with model, and output the accuracy
+    :param model: FFNN model
+    :param gramTest: data set N * 2
+    :param labelTest: label N * 1
+    :return: accuracy - testing accuracy
+    '''
     # prepare for model.
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model.to(device)
