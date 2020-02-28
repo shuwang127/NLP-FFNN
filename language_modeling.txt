@@ -32,3 +32,36 @@ N-gram test data: positive 13327, negative 29238.
 -------------------------------------------
 Test accuracy：85.801%
 -------------------------------------------
+
+-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --
+Successfully load data from './tmp/'.
+Successfully load n-grams from './tmp/'.
+N-gram train data: positive 16486, negative 32972.
+[Epoch 010] loss: 0.206, train acc: 70.609%, valid acc: 69.733%
+[Epoch 020] loss: 0.197, train acc: 73.161%, valid acc: 72.038%
+[Epoch 030] loss: 0.189, train acc: 74.114%, valid acc: 73.130%
+[Epoch 040] loss: 0.181, train acc: 75.214%, valid acc: 74.353%
+[Epoch 050] loss: 0.173, train acc: 76.685%, valid acc: 75.687%
+[Epoch 060] loss: 0.165, train acc: 78.128%, valid acc: 77.002%
+[Epoch 070] loss: 0.159, train acc: 79.227%, valid acc: 78.043%
+[Epoch 080] loss: 0.153, train acc: 79.947%, valid acc: 78.680%
+[Epoch 090] loss: 0.147, train acc: 80.870%, valid acc: 79.640%
+[Epoch 100] loss: 0.142, train acc: 81.818%, valid acc: 80.611%
+[Epoch 110] loss: 0.137, train acc: 82.561%, valid acc: 81.055%
+[Epoch 120] loss: 0.133, train acc: 83.228%, valid acc: 81.622%
+[Epoch 130] loss: 0.129, train acc: 83.827%, valid acc: 82.289%
+[Epoch 140] loss: 0.126, train acc: 84.282%, valid acc: 82.612%
+[Epoch 150] loss: 0.123, train acc: 84.671%, valid acc: 82.946%
+[Epoch 160] loss: 0.121, train acc: 85.030%, valid acc: 83.027%
+[Epoch 170] loss: 0.119, train acc: 85.323%, valid acc: 83.320%
+[Epoch 180] loss: 0.117, train acc: 85.596%, valid acc: 83.522%
+[Epoch 190] loss: 0.115, train acc: 85.803%, valid acc: 83.542%
+[Epoch 200] loss: 0.113, train acc: 86.026%, valid acc: 83.583%
+[Epoch 210] loss: 0.112, train acc: 86.236%, valid acc: 83.674%
+[Epoch 220] loss: 0.110, train acc: 86.433%, valid acc: 83.674%
+[Epoch 230] loss: 0.109, train acc: 86.675%, valid acc: 83.694%
+Successfully load n-grams from './tmp/'.
+N-gram test data: positive 13327, negative 29238.
+-------------------------------------------
+Test accuracy：86.061%
+-------------------------------------------
