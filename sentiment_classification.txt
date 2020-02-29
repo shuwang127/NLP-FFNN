@@ -7,37 +7,59 @@ Load TrainSet: 1181/3000 positive/negative samples.
 Vocabulary: 6636 items.
 Vocabulary (stem): 5090 items.
 Load TestSet: 1182/3000 positive/negative samples.
-[050000] loss: 0.172, train acc: 76.764%, valid acc: 74.313%
-[100000] loss: 0.096, train acc: 89.145%, valid acc: 83.513%
-[150000] loss: 0.068, train acc: 92.584%, valid acc: 85.663%
-[200000] loss: 0.058, train acc: 93.810%, valid acc: 85.902%
-[250000] loss: 0.050, train acc: 94.647%, valid acc: 86.499%
-[300000] loss: 0.043, train acc: 95.395%, valid acc: 86.977%
-[350000] loss: 0.040, train acc: 95.724%, valid acc: 86.858%
+[Epoch 100] loss: 0.715, train acc: 28.499%, valid acc: 27.240%
+[Epoch 200] loss: 0.715, train acc: 28.499%, valid acc: 27.240%
+[Epoch 300] loss: 0.201, train acc: 71.501%, valid acc: 72.760%
+[Epoch 400] loss: 0.193, train acc: 73.325%, valid acc: 74.671%
+[Epoch 500] loss: 0.184, train acc: 74.701%, valid acc: 77.419%
+[Epoch 600] loss: 0.177, train acc: 75.807%, valid acc: 78.136%
+[Epoch 700] loss: 0.170, train acc: 77.303%, valid acc: 78.853%
+[Epoch 800] loss: 0.161, train acc: 78.589%, valid acc: 79.809%
+[Epoch 900] loss: 0.150, train acc: 80.562%, valid acc: 81.243%
+[Epoch 1000] loss: 0.138, train acc: 82.386%, valid acc: 81.959%
+[Epoch 1100] loss: 0.126, train acc: 84.510%, valid acc: 83.274%
+[Epoch 1200] loss: 0.112, train acc: 86.364%, valid acc: 85.185%
+[Epoch 1300] loss: 0.100, train acc: 88.457%, valid acc: 85.783%
+[Epoch 1400] loss: 0.089, train acc: 89.862%, valid acc: 86.380%
+[Epoch 1500] loss: 0.082, train acc: 90.789%, valid acc: 86.619%
+[Epoch 1600] loss: 0.076, train acc: 91.717%, valid acc: 86.858%
+[Epoch 1700] loss: 0.071, train acc: 92.255%, valid acc: 87.097%
+[Epoch 1800] loss: 0.067, train acc: 92.703%, valid acc: 87.455%
+[Epoch 1900] loss: 0.064, train acc: 93.032%, valid acc: 87.455%
+[Epoch 2000] loss: 0.061, train acc: 93.391%, valid acc: 87.455%
+[Epoch 2100] loss: 0.059, train acc: 93.750%, valid acc: 87.814%
+[Epoch 2200] loss: 0.058, train acc: 93.870%, valid acc: 88.053%
 -------------------------------------------
 Feed Forward Neural Network | Stem
-test accuracy : 87.52%
+test accuracy : 86.70%
 confusion matrix :      (actual)
                     Neg         Pos
-(predicted) Neg     2817(TN)    339 (FN)
-            Pos     183 (FP)    843 (TP)
+(predicted) Neg     2811(TN)    367 (FN)
+            Pos     189 (FP)    815 (TP)
 -------------------------------------------
-[050000] loss: 0.168, train acc: 77.542%, valid acc: 75.986%
-[100000] loss: 0.097, train acc: 89.025%, valid acc: 82.915%
-[150000] loss: 0.064, train acc: 93.062%, valid acc: 84.946%
-[200000] loss: 0.055, train acc: 94.109%, valid acc: 84.946%
-[250000] loss: 0.050, train acc: 94.647%, valid acc: 85.185%
-[300000] loss: 0.046, train acc: 95.126%, valid acc: 85.185%
-[350000] loss: 0.045, train acc: 95.245%, valid acc: 85.424%
-[400000] loss: 0.043, train acc: 95.425%, valid acc: 85.902%
-[450000] loss: 0.042, train acc: 95.574%, valid acc: 85.902%
-[500000] loss: 0.040, train acc: 95.694%, valid acc: 86.022%
-[550000] loss: 0.040, train acc: 95.783%, valid acc: 85.902%
+[Epoch 100] loss: 0.716, train acc: 28.170%, valid acc: 28.554%
+[Epoch 200] loss: 0.716, train acc: 28.170%, valid acc: 28.554%
+[Epoch 300] loss: 0.196, train acc: 72.937%, valid acc: 72.282%
+[Epoch 400] loss: 0.175, train acc: 75.927%, valid acc: 75.508%
+[Epoch 500] loss: 0.160, train acc: 78.888%, valid acc: 76.105%
+[Epoch 600] loss: 0.143, train acc: 82.177%, valid acc: 78.256%
+[Epoch 700] loss: 0.123, train acc: 85.138%, valid acc: 79.928%
+[Epoch 800] loss: 0.111, train acc: 87.022%, valid acc: 81.720%
+[Epoch 900] loss: 0.090, train acc: 89.145%, valid acc: 82.437%
+[Epoch 1000] loss: 0.079, train acc: 90.580%, valid acc: 83.751%
+[Epoch 1100] loss: 0.071, train acc: 91.687%, valid acc: 83.871%
+[Epoch 1200] loss: 0.066, train acc: 92.195%, valid acc: 84.110%
+[Epoch 1300] loss: 0.060, train acc: 93.122%, valid acc: 84.946%
+[Epoch 1400] loss: 0.056, train acc: 93.511%, valid acc: 85.305%
+[Epoch 1500] loss: 0.053, train acc: 93.840%, valid acc: 85.424%
+[Epoch 1600] loss: 0.050, train acc: 94.258%, valid acc: 85.424%
+[Epoch 1700] loss: 0.048, train acc: 94.557%, valid acc: 86.260%
+[Epoch 1800] loss: 0.047, train acc: 94.587%, valid acc: 86.260%
 -------------------------------------------
 Feed Forward Neural Network | noStem
-test accuracy : 87.06%
+test accuracy : 86.35%
 confusion matrix :      (actual)
                     Neg         Pos
-(predicted) Neg     2801(TN)    342 (FN)
-            Pos     199 (FP)    840 (TP)
+(predicted) Neg     2782(TN)    353 (FN)
+            Pos     218 (FP)    829 (TP)
 -------------------------------------------
