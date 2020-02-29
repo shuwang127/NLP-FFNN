@@ -31,8 +31,14 @@ from sklearn.model_selection import train_test_split
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import torch.utils.data as torchdata
 nltk.download('stopwords')
 nltk.download('punkt')
+
+# global path
+logPath = './sentiment_classification.txt'
+datPath = './tweet/'
+tmpPath = './tmp/'
 
 # Logger: redirect the stream on screen and to file.
 class Logger(object):
@@ -48,14 +54,18 @@ class Logger(object):
 # The main function.
 def main():
     # initialize the log file.
-    logPath = './sentiment_classification.txt'
-    if os.path.exists(logPath):
-        os.remove(logPath)
     sys.stdout = Logger(logPath)
 
     print("-- AIT726 Homework 2 from Julia Jeng, Shu Wang, and Arman Anwar --")
+
     # create the vocabulary.
-    CreateVocabulary()
+    if (os.path.exists(tmpPath + '/Train.npz') and
+        os.path.exists(tmpPath + '/Test.npz') and
+        os.path.exists(tmpPath + '/Vocab.npz')):
+        print('Successfully find data from \'' + tmpPath + '\'.')
+    else:
+        CreateVocabulary()
+
     # run demo.
     DemoFFNN('Stem')
     DemoFFNN('noStem')
@@ -74,17 +84,23 @@ def DemoFFNN(lStem = 'noStem'):
         return
 
     # extract training features with 'lStem' dataset.
-    featTrain = ExtractFeatures('Train', lStem)
-    # np.save('tmp/featTrain.npy', featTrain)
-    # featTrain = np.load('tmp/featTrain.npy')
+    if os.path.exists(tmpPath + '/featTrain_' + lStem + '.npy'):
+        featTrain = np.load(tmpPath + '/featTrain_' + lStem + '.npy')
+        print('Successfully load ' + tmpPath + '/featTrain_' + lStem + '.npy')
+    else:
+        featTrain = ExtractFeatures('Train', lStem)
+        np.save(tmpPath + '/featTrain_' + lStem + '.npy', featTrain)
 
     # get the model parameters.
     model = TrainFFNN(featTrain)
 
     # extract testing features with 'lStem' dataset.
-    featTest = ExtractFeatures('Test', lStem)
-    # np.save('tmp/featTest.npy', featTest)
-    # featTest = np.load('tmp/featTest.npy')
+    if os.path.exists(tmpPath + '/featTest_' + lStem + '.npy'):
+        featTest = np.load(tmpPath + '/featTest_' + lStem + '.npy')
+        print('Successfully load ' + tmpPath + '/featTest_' + lStem + '.npy')
+    else:
+        featTest = ExtractFeatures('Test', lStem)
+        np.save(tmpPath + '/featTest_' + lStem + '.npy', featTest)
 
     # get testing predictions using model parameters.
     accuracy, confusion = TestFFNN(model, featTest)
@@ -155,16 +171,16 @@ def CreateVocabulary():
         return tokensStem
 
     # if there is no 'tmp' folder, create one.
-    if not os.path.exists('./tmp/'):
-        os.mkdir('./tmp/')
-    if not os.path.exists('./tweet'):
-        print('ERROR: Please put folder \'twitter\' in the same directory.')
+    if not os.path.exists(tmpPath):
+        os.mkdir(tmpPath)
+    if not os.path.exists(datPath):
+        print('[ERROR]: Cannot find the data path \'' + datPath + '\'.')
 
     # read the training data.
     labelTrain = []
     dataTrain = []
     dataTrainStem = []
-    for root, ds, fs in os.walk('./tweet/train/'):
+    for root, ds, fs in os.walk(datPath + '/train/'):
         for file in fs:
             fullname = os.path.join(root, file)
             # get the training label.
@@ -191,20 +207,20 @@ def CreateVocabulary():
             dataTrainStem.append(tokensStem)
             # print(tokensStem)
     print('Load TrainSet: %d/%d positive/negative samples.' % (sum(labelTrain), len(labelTrain)-sum(labelTrain)))
-    np.savez('tmp/Train.npz', labelTrain = labelTrain, dataTrain = dataTrain, dataTrainStem = dataTrainStem)
+    np.savez(tmpPath + '/Train.npz', labelTrain = labelTrain, dataTrain = dataTrain, dataTrainStem = dataTrainStem)
 
     # build the vocabulary from training set.
     vocab = list(set(list(chain.from_iterable(dataTrain))))
     vocabStem = list(set(list(chain.from_iterable(dataTrainStem))))
     print('Vocabulary: %d items.' % len(vocab))
     print('Vocabulary (stem): %d items.' % len(vocabStem))
-    np.savez('tmp/Vocab.npz', vocab = vocab, vocabStem = vocabStem)
+    np.savez(tmpPath + '/Vocab.npz', vocab = vocab, vocabStem = vocabStem)
 
     # read the testing data.
     labelTest = []
     dataTest = []
     dataTestStem = []
-    for root, ds, fs in os.walk('./tweet/test/'):
+    for root, ds, fs in os.walk(datPath + '/test/'):
         for file in fs:
             fullname = os.path.join(root, file)
             # get the testing label.
@@ -231,7 +247,7 @@ def CreateVocabulary():
             dataTestStem.append(tokensStem)
             # print(tokensStem)
     print('Load TestSet: %d/%d positive/negative samples.' % (sum(labelTest), len(labelTest)-sum(labelTest)))
-    np.savez('tmp/Test.npz', labelTest = labelTest, dataTest = dataTest, dataTestStem = dataTestStem)
+    np.savez(tmpPath + '/Test.npz', labelTest = labelTest, dataTest = dataTest, dataTestStem = dataTestStem)
     return
 
 # extract tfidf features for a 'dataset' with or without 'stem'
@@ -251,7 +267,7 @@ def ExtractFeatures(dataset = 'Train', lStem = 'noStem'):
         return
 
     # sparse the corresponding dataset.
-    dset = np.load('./tmp/' + dataset + '.npz', allow_pickle = True)
+    dset = np.load(tmpPath + dataset + '.npz', allow_pickle = True)
     if 'Stem' == lStem:
         data = dset['data' + dataset + lStem]
     else:
@@ -259,7 +275,7 @@ def ExtractFeatures(dataset = 'Train', lStem = 'noStem'):
     D = len(data)
 
     # sparse the corresponding vocabulary.
-    vset = np.load('./tmp/Vocab.npz', allow_pickle = True)
+    vset = np.load(tmpPath + '/Vocab.npz', allow_pickle = True)
     if 'Stem' == lStem:
         vocab = vset['vocab' + lStem]
     else:
@@ -298,10 +314,10 @@ def ExtractFeatures(dataset = 'Train', lStem = 'noStem'):
             if df[i] > 0:
                 idf[i] = math.log(D, 10) - math.log(df[i], 10)
         del df
-        np.save('./tmp/idf.npy', idf)
+        np.save(tmpPath + '/idf_' + lStem + '.npy', idf)
     else:
         # if 'Test' == dataset, get idf from arguments.
-        idf = np.load('./tmp/idf.npy')
+        idf = np.load(tmpPath + '/idf_' + lStem + '.npy')
     del termBin
 
     # get tfidf
@@ -350,7 +366,7 @@ def TrainFFNN(featTrain):
     V = len(featTrain[0])
     D = len(featTrain)
     # sparse the corresponding label.
-    dset = np.load('./tmp/Train.npz', allow_pickle = True)
+    dset = np.load(tmpPath + '/Train.npz', allow_pickle = True)
     labelTrain = dset['labelTrain']
 
     # shuffle the data and label.
@@ -358,43 +374,85 @@ def TrainFFNN(featTrain):
     random.shuffle(index)
     featTrain = featTrain[index]
     labelTrain = labelTrain[index]
+
     # split the train and valid set.
     xTrain, xValid, yTrain, yValid = train_test_split(featTrain, labelTrain, test_size=0.2)
     # convert data (x,y) into tensor.
-    x = torch.Tensor(xTrain).cuda()
-    y = torch.Tensor(yTrain).cuda()
-    y = y.reshape(len(yTrain), 1)
-    xv = torch.Tensor(xValid).cuda()
+    xTrain = torch.Tensor(xTrain).cuda()
+    yTrain = torch.LongTensor(yTrain).cuda()
+    yTrain = yTrain.reshape(len(yTrain), 1)
+    xValid = torch.Tensor(xValid).cuda()
+    yValid = torch.LongTensor(yValid).cuda()
+    yValid = yValid.reshape(len(yValid), 1)
+
+    # convert to mini-batch form.
+    batchsize = 256
+    train = torchdata.TensorDataset(xTrain, yTrain)
+    numTrain = len(train)
+    trainloader = torchdata.DataLoader(train, batch_size=batchsize, shuffle=False)
+    valid = torchdata.TensorDataset(xValid, yValid)
+    numValid = len(valid)
+    validloader = torchdata.DataLoader(valid, batch_size=batchsize, shuffle=False)
 
     # build the model of feed forward neural network.
     model = FeedForwardNeuralNetwork(V)
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model.apply(weight_init)
-    model.to('cuda')
+    model.to(device)
     # optimizing with stochastic gradient descent.
-    optimizer = optim.SGD(model.parameters(), lr = 0.05)
+    optimizer = optim.SGD(model.parameters(), lr = 0.5)
     # seting loss function as mean squared error.
-    loss = nn.MSELoss()
+    criterion = nn.MSELoss()
 
-    # training phase.
-    accvbest = 0
-    for epoch in range(1000000):   # training loop
-        model.zero_grad()       # zero all the Gradients
-        yhat = model.forward(x) # compute forward pass
-        output = loss(y, yhat)  # compute loss
-        output.backward()       # back propagate loss
-        optimizer.step()        # update weights
-        # print statistics
-        if 0 == (epoch + 1) % 50000:  # print every 10000 mini-batches
-            acc = trainAccuracy(y, yhat) * 100
-            yvhat = model.forward(xv)
-            accv = trainAccuracy(yValid, yvhat) * 100
-            print('[%06d] loss: %.3f, train acc: %.3f%%, valid acc: %.3f%%' % (epoch + 1, output.item(), acc, accv))
-            if accv >= accvbest:
-                accvbest = accv
-                torch.save(model, 'tmp/model.pth')
-            else:
-                model = torch.load('tmp/model.pth')
-                return model
+    # run on each epoch.
+    accList = [0]
+    for epoch in range(10000):
+        # training phase.
+        model.train()
+        lossTrain = 0
+        accTrain = 0
+        for iter, (data, label) in enumerate(trainloader):
+            data = data.to(device)
+            label = label.to(device)
+            optimizer.zero_grad()  # set the gradients to zero.
+            yhat = model.forward(data)  # get output
+            loss = criterion(label.float(), yhat)
+            loss.backward()
+            optimizer.step()
+            # statistic
+            lossTrain += loss.item()
+            preds = (yhat > 0.5).long()
+            accTrain += torch.sum(torch.eq(preds, label).long()).item()
+        lossTrain /= (iter + 1)
+        accTrain *= 100 / numTrain
+
+        # validation phase.
+        model.eval()
+        accValid = 0
+        with torch.no_grad():
+            for iter, (data, label) in enumerate(validloader):
+                data = data.to(device)
+                label = label.to(device)
+                yhat = model.forward(data)  # get output
+                # statistic
+                preds = (yhat > 0.5).long()
+                accValid += torch.sum(torch.eq(preds, label).long()).item()
+        accValid *= 100 / numValid
+        accList.append(accValid)
+
+        # output information.
+        if 0 == (epoch + 1) % 100:
+            print('[Epoch %03d] loss: %.3f, train acc: %.3f%%, valid acc: %.3f%%' % (
+            epoch + 1, lossTrain, accTrain, accValid))
+        # save the best model.
+        if accList[-1] > max(accList[0:-1]):
+            torch.save(model.state_dict(), tmpPath + '/model.pth')
+        # stop judgement.
+        if (epoch + 1) >= 100 and accList[-1] < min(accList[-100:-1]):
+            break
+
+    # load best model.
+    model.load_state_dict(torch.load(tmpPath + '/model.pth'))
     return model
 
 # test the feed forward neural network.
@@ -420,7 +478,7 @@ def TestFFNN(model, featTest):
     # evaluate the predictions with gold labels, and get accuracy and confusion matrix.
     def Evaluation(predictions):
         # sparse the corresponding label.
-        dset = np.load('./tmp/Test.npz', allow_pickle = True)
+        dset = np.load(tmpPath + '/Test.npz', allow_pickle = True)
         labelTest = dset['labelTest']
         D = len(labelTest)
         cls = 2
